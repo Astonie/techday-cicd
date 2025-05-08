@@ -13,7 +13,7 @@ pipeline{
         }
         stage('Build Docker Image') {
             steps {
-               sh 'docker build -t **mukiwa**/techday-cicd:$BUILD_NUMBER .'
+               sh 'docker build -t mukiwa/techday-cicd:$BUILD_NUMBER .'
             }
            
         }
