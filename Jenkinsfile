@@ -1,5 +1,9 @@
 pipeline{
     agent any
+    environment {
+       DOCKER_CREDENTIALS = credentials('dockerhub')
+
+    }
     stages {
         stage('SCM Checkout') {
             steps {
@@ -7,10 +11,11 @@ pipeline{
             }
     
         }
-        stage('Test') {
+        stage('Build Docker Image') {
             steps {
-                echo 'Testing...'
+               sh 'docker build -t **mukiwa**/techday-cicd:$BUILD_NUMBER .'
             }
+           
         }
         stage('Deploy') {
             steps {
