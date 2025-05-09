@@ -1,0 +1,46 @@
+/* style file for the index html file */
+body {
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+h1 {
+    color: #333;
+    text-align: center;
+    margin-top: 20px;
+}
+h2 {
+    color: #555;
+    text-align: center;
+    margin-top: 10px;
+}
+h3 {
+    color: #777;
+    text-align: center;
+    margin-top: 5px;
+}
+p {
+    color: #444;
+    text-align: center;
+    margin: 10px 0;
+}
+p a {
+    color: #007BFF;
+    text-decoration: none;
+}
+p a:hover {
+    text-decoration: underline;
+}
+p a:visited {
+    color: #0056b3;
+}
+p a:active {
+    color: #004085;
+}
+p a:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+p a:focus-visible {
+    outline: 2px solid #007BFF;
+    outline-offset: 2px;
+}

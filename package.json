@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "deploy": "gh-pages -d . -r https://x-access-token:${GITHUB_TOKEN}@github.com/Astonie/techday-cicd.git"
+    },
+    "devDependencies": {
+        "gh-pages": "^6.3.0"
+    }
+}
