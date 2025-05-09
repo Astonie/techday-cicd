@@ -1,47 +1,19 @@
 pipeline {
-    agent {
-        docker {
-            image 'docker:20.10.24-dind'     // Docker daemon in container
-            args '--privileged'             // Required to run Docker daemon
-        }
-    }
-
-    environment {
-        DOCKER_CREDENTIALS = credentials('dockerhub-creds')
-    }
-
+    agent any
     stages {
-        stage('SCM Checkout') {
+        stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/Astonie/techday-cicd.git'
+                git url: 'https://github.com/Astonie/techday-cicd.git', branch: 'main'
             }
         }
-
-        stage('Start Docker Daemon') {
+        stage('Build and Run') {
             steps {
-                sh '''
-                    dockerd-entrypoint.sh &  # Start Docker daemon
-                    sleep 5                  # Wait for daemon to initialize
-                '''
+                script {
+                    docker.image('python:3.9-slim').inside {
+                        sh 'python app.py'
+                    }
+                }
             }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t mukiwa/techday-cicd:$BUILD_NUMBER .'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                echo 'Deploying...'
-            }
-        }
-    }
-
-    post {
-        always {
-            echo 'This will always run after the stages.'
         }
     }
 }
