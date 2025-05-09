@@ -9,7 +9,7 @@ pipeline {
         stage('Build and Run') {
             steps {
                 script {
-                    docker.image('python:3.9-slim').inside {
+                    docker.image('python:3.9-slim').inside('--user root') {
                         sh 'python app.py'
                     }
                 }
